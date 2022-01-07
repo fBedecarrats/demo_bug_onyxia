@@ -1,0 +1,26 @@
+!/bin/sh
+
+# Create variables
+WORK_DIR=/home/rstudio/demo_bug
+REPO_URL=https://github.com/fBedecarrats/demo_bug8_onyxia # As initial
+
+# Git
+git clone $REPO_URL $WORK_DIR
+chown -R rstudio:users $WORK_DIR
+
+# copy files
+mc cp s3/fbedecarrats/diffusion/demo_bug $WORK_DIR
+
+# launch RStudio in the right project
+# Copied from InseeLab UtilitR
+    echo \
+    "
+    setHook('rstudio.sessionInit', function(newSession) {
+        if (newSession && identical(getwd(), path.expand('~')))
+        {
+            message('On charge directement le bon projet :-) ')
+            rstudioapi::openProject('~/demo_bug')
+            rstudioapi::applyTheme('Merbivore')
+            }
+            }, action = 'append')
+            " >> /home/rstudio/.Rprofile
