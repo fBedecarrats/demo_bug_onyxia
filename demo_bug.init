@@ -9,7 +9,7 @@ git clone $REPO_URL $WORK_DIR
 chown -R rstudio:users $WORK_DIR
 
 # copy files
-mc cp s3/fbedecarrats/diffusion/demo_bug $WORK_DIR
+mc cp s3/fbedecarrats/diffusion/demo_bug.txt $WORK_DIR
 
 # launch RStudio in the right project
 # Copied from InseeLab UtilitR
